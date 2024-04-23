@@ -14,16 +14,16 @@ const char* database = "u911537442_farmcup";
 WiFiClient client;
 MySQL_Connection conn((Client *)&client);
 
-#define RELAY1 D0 //snap a and b for ec and tds
-#define RELAY2 D1 //pH up if pH is too low
-#define RELAY3 D2 //pH down if pH is too high
-#define RELAY4 D3 //water pump for downspouts
-#define RELAY5 D4 //water pump for the water container
-#define RELAY6 D5 //water pump for mixing
-#define RELAY7 D6 //fans for temp and humidity
-#define RELAY8 D7 //growlight for light level control (pwede ding timed)
-#define RELAY9 D8 //water pump for sump container (in)
-#define RELAY10 A0 //water pump back to water container (out)
+#define RELAY1 A0 //pH up if pH is too low
+#define RELAY2 D0 //pH down if pH is too high
+#define RELAY3 D1 //snap a and b for ec and tds
+#define RELAY4 D2 //water pump for downspouts
+#define RELAY5 D3 //water pump for the water container
+#define RELAY6 D4 //water pump for mixing
+#define RELAY7 D5 //fans for temp and humidity
+#define RELAY8 D6 //growlight for light level control (pwede ding timed)
+#define RELAY9 D7 //water pump for sump container (in)
+#define RELAY10 D8 //water pump back to water container (out)
 
 void setup() {
   Serial.begin(115200);
@@ -126,9 +126,9 @@ void loop() {
       }
 
       if (tds >= 500) {
-        digitalWrite(RELAY1, HIGH); // Turn on relay for snap a & b
+        digitalWrite(RELAY3, HIGH); // Turn on relay for snap a & b
       } else {
-        digitalWrite(RELAY1, LOW); // Turn off relay for snap a & b
+        digitalWrite(RELAY3, LOW); // Turn off relay for snap a & b
       }
     } else {
       Serial.println("Error: Invalid sensor data.");
